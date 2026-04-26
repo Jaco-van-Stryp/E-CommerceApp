@@ -9,7 +9,7 @@ using FluentAssertions;
 using Moq;
 using MockFactory = E_CommerceTests.Factory.MockFactory;
 
-namespace E_CommerceTests;
+namespace E_CommerceTests.Features.Auth.Login;
 
 public class LoginTests
 {

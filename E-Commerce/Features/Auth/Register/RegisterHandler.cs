@@ -3,6 +3,7 @@ using E_Commerce.Data.Entities;
 using E_Commerce.Infrastructure.Exceptions;
 using E_Commerce.Services.JWTTokenService;
 using E_Commerce.Services.PasswordService;
+using EmailValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -22,10 +23,10 @@ public class RegisterHandler(
     {
         var email = request.Email.ToLowerInvariant();
 
-        var emailTaken = await dbContext.Users.AnyAsync(
-            x => x.Email == email,
-            cancellationToken
-        );
+        if (!EmailValidator.Validate(email))
+            throw new InvalidEmailException();
+
+        var emailTaken = await dbContext.Users.AnyAsync(x => x.Email == email, cancellationToken);
         if (emailTaken)
             throw new ConflictException($"A user with email '{email}' already exists.");
 
