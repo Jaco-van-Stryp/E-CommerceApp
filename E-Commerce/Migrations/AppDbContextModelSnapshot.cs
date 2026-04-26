@@ -114,6 +114,10 @@ namespace E_Commerce.Migrations
                     b.Property<Guid?>("CartId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<Guid?>("OrdersId")
                         .HasColumnType("uuid");
 

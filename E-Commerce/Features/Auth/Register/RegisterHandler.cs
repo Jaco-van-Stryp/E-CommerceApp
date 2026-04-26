@@ -1,45 +1,42 @@
-using System.Security.Cryptography;
-using System.Text;
 using E_Commerce.Data;
 using E_Commerce.Data.Entities;
 using E_Commerce.Infrastructure.Exceptions;
 using E_Commerce.Services.JWTTokenService;
+using E_Commerce.Services.PasswordService;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace E_Commerce.Features.Auth.Register;
 
-public class RegisterHandler(AppDbContext dbContext, IJwtTokenService jwtTokenService)
-    : IRequestHandler<RegisterCommand, RegisterResponse>
+public class RegisterHandler(
+    AppDbContext dbContext,
+    IJwtTokenService jwtTokenService,
+    IPasswordService passwordService
+) : IRequestHandler<RegisterCommand, RegisterResponse>
 {
     public async Task<RegisterResponse> Handle(
         RegisterCommand request,
         CancellationToken cancellationToken
     )
     {
+        var email = request.Email.ToLowerInvariant();
+
         var emailTaken = await dbContext.Users.AnyAsync(
-            x => x.Email == request.Email,
+            x => x.Email == email,
             cancellationToken
         );
         if (emailTaken)
-            throw new ConflictException($"A user with email '{request.Email}' already exists.");
+            throw new ConflictException($"A user with email '{email}' already exists.");
 
-        var salt = RandomNumberGenerator.GetBytes(32);
-        var hash = Rfc2898DeriveBytes.Pbkdf2(
-            Encoding.UTF8.GetBytes(request.Password),
-            salt,
-            350_000,
-            HashAlgorithmName.SHA512,
-            64
-        );
+        var hashed = passwordService.Hash(request.Password);
 
         var user = new Users
         {
             Id = Guid.NewGuid(),
-            Email = request.Email,
-            PasswordHash = Convert.ToBase64String(hash),
-            PasswordSalt = Convert.ToBase64String(salt),
+            Email = email,
+            PasswordHash = hashed.Hash,
+            PasswordSalt = hashed.Salt,
         };
 
         dbContext.Users.Add(user);

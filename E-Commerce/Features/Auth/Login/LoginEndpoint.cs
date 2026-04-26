@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Identity.Data;
 
 namespace E_Commerce.Features.Auth.Login;
 
@@ -9,9 +8,10 @@ public static class LoginEndpoint
     {
         app.MapPost(
                 "Login",
-                (ISender sender, LoginRequest request) =>
+                async (ISender sender, LoginCommand request) =>
                 {
-                    sender.Send(request);
+                    var response = await sender.Send(request);
+                    return Results.Ok(response);
                 }
             )
             .WithName("Login");

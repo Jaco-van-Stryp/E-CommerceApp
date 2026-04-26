@@ -7,5 +7,6 @@ public class Products
     public required string ProductDescription { get; set; }
     public required double ProductPrice { get; set; }
     public required Guid ProductImageFileName { get; set; }
+    public required string Category { get; set; }
     public bool Active { get; set; } = true;
 }

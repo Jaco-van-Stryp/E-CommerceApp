@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce", "E-Commerce\E-Commerce.csproj", "{F306196B-A1AC-4DA6-B307-E552FA3F562C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-CommerceTests", "E-CommerceTests\E-CommerceTests.csproj", "{706E30BD-1F35-4178-BA15-226D1413E511}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{F306196B-A1AC-4DA6-B307-E552FA3F562C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F306196B-A1AC-4DA6-B307-E552FA3F562C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F306196B-A1AC-4DA6-B307-E552FA3F562C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{706E30BD-1F35-4178-BA15-226D1413E511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{706E30BD-1F35-4178-BA15-226D1413E511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{706E30BD-1F35-4178-BA15-226D1413E511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{706E30BD-1F35-4178-BA15-226D1413E511}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
