@@ -11,7 +11,7 @@ public static class LoginEndpoint
                 async (ISender sender, LoginCommand request) =>
                 {
                     var response = await sender.Send(request);
-                    return Results.Ok(response);
+                    return TypedResults.Ok(response);
                 }
             )
             .WithName("Login");

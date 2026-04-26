@@ -11,7 +11,7 @@ public static class RegisterEndpoint
                 async (ISender sender, RegisterCommand request) =>
                 {
                     var response = await sender.Send(request);
-                    return Results.Ok(response);
+                    return TypedResults.Ok(response);
                 }
             )
             .WithName("Register");
