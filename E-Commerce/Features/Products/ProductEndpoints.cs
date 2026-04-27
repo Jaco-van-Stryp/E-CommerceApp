@@ -1,4 +1,5 @@
 using E_Commerce.Features.Products.CreateProduct;
+using E_Commerce.Features.Products.GetAllProducts;
 
 namespace E_Commerce.Features.Products;
 
@@ -9,6 +10,7 @@ public static class ProductEndpoints
         //TODO - Admin users should be able to create products, for now, free for all during testing
         var group = app.MapGroup("Products").WithTags("Products").RequireAuthorization();
         group.MapCreateProductEndpoint();
+        group.MapGetAllProductsEndpoint();
         return group;
     }
 }

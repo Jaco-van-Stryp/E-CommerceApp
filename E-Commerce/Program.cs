@@ -46,6 +46,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddScoped<IJwtTokenService, JtwTokenService>();
 builder.Services.AddProblemDetails();
 var app = builder.Build();
 
