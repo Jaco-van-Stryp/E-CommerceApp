@@ -42,7 +42,7 @@ public class LoginTests
     [Fact]
     public async Task Given_Login_When_ValidCredentials_Then_GenerateValidToken()
     {
-        await SeedUsers(email: UserName, Password);
+        await SeedUsers(email: UserName, password: Password);
         var command = new LoginCommand(Email: UserName, Password: Password);
         var handler = new LoginHandler(_db, _mockJwtTokenService.Object, _passwordService);
         var results = await handler.Handle(command, CancellationToken.None);

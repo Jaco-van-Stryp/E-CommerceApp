@@ -13,11 +13,7 @@ public class GetAllProductsHandler(AppDbContext database)
     )
     {
         const string filePreFix = "TODO\\";
-        var isAllCategories = string.Equals(
-            request.Category,
-            "All",
-            StringComparison.OrdinalIgnoreCase
-        );
+        bool isAllCategories = request.Category == null;
 
         var products = await database
             .Products.Where(x => isAllCategories || x.ProductCategory == request.Category)

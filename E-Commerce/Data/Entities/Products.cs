@@ -7,6 +7,6 @@ public class Products
     public required string ProductDescription { get; set; }
     public required decimal ProductPrice { get; set; }
     public required Guid ProductImageFileName { get; set; }
-    public required string ProductCategory { get; set; }
+    public required string? ProductCategory { get; set; }
     public bool Active { get; set; } = true;
 }
